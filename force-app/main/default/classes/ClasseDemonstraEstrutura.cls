@@ -5,7 +5,7 @@ public with sharing class ClasseDemonstraEstrutura {//inicio da classe
     
     //metodo da classe, uma classe pode ter varios metodos
     public static boolean nomeDoMetodo(){//inicio do método
-            //
+           // //
         //TIPO VARIAVEL | NOME VARIAVEL | VALOR VARIAVEL
         Boolean bTrue = true;
         Boolean bFalse = false;
