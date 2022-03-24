@@ -5,7 +5,7 @@ public with sharing class ClasseDemonstraEstrutura {//inicio da classe
     
     //metodo da classe, uma classe pode ter varios metodos
     public static boolean nomeDoMetodo(){//inicio do método
-           // //
+
         //TIPO VARIAVEL | NOME VARIAVEL | VALOR VARIAVEL
         Boolean bTrue = true;
         Boolean bFalse = false;
@@ -31,6 +31,9 @@ public with sharing class ClasseDemonstraEstrutura {//inicio da classe
         system.debug('exemploLista = '+exemploLista);
         system.debug('exemploLista posição 2 = '+exemploLista.get(2));
         system.debug('exemploLista tamanho = '+exemploLista.size());
+
+        ///Adição sem usar o add
+        List<String> exemploLista2 = new List<String>{'Edgar', 'João Paulo', 'Arnaldo'};
 
         List<Integer> exemploListaInteger = new List<Integer>();
         exemploListaInteger.add(null);
@@ -345,6 +348,27 @@ public with sharing class ClasseDemonstraEstrutura {//inicio da classe
         }
     }
 
+    public static void demonstraMap2(){
+        Map<String, Account> contasComCpf = new Map<String, Account>();
+        for(Account vTemp : [SELECT Id, Name, CPF_CNPJ__c FROM Account WHERE CPF_CNPJ__c != '']){
+            system.debug('vtemp '+vtemp);
+            contasComCpf.put(vTemp.CPF_CNPJ__c, vtemp);
+        }
+        system.debug('contasComCpf '+contasComCpf);
+
+        /*
+            contasComCpf {
+                28987241068=Account:{Id=0018c00002ExDT5AAN, Name=Conta DESAFIO 3, CPF_CNPJ__c=28987241068}, 
+                56875327066=Account:{Id=0018c00002ExCnFAAV, Name=Conta 6, CPF_CNPJ__c=56875327066}, 
+                71533936099=Account:{Id=0018c00002ExCufAAF, Name=Conta TESTE DOIS 7, CPF_CNPJ__c=71533936099}}
+        */
+        if(contasComCpf.containsKey('56875327066')){
+            system.debug('contem o cpf');
+        }else{
+            system.debug('não contém o cpf');
+        }
+    }    
+
     //DESAFIO - Receber um número inteiro no parâmetro, e vão criar as contas conforme este número com o nome 'Conta DESAFIO 1', 'Conta DESAFIO 2'; Caso a conta com o nome exista, não deve ser criado, pois não queremos mais de uma conta com o mesmo nome
     public static void insertAccountsDesafioNomeSemMap(Integer quantidadeContas){
         List<Account> accountList = new List<Account>();
@@ -385,11 +409,6 @@ public with sharing class ClasseDemonstraEstrutura {//inicio da classe
             insert accountList;
         }
     }    
-    
-
-
-
-
 
 
 }//fim da classe
